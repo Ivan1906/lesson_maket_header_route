@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
+import {Provider, connect} from 'react-redux';
 import Router from './scenes/router';
 import Footer from './components/Footer/Footer';
-import Api from './Api';
+import Api from './api';
+import store from './store/createStore';
 
 import './index.css';
 
@@ -16,11 +18,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Router />
-        <Footer />
+        <Router/>
+        <Footer/>
       </BrowserRouter>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const AppConnected = connect()(App);
+
+ReactDOM.render(
+  <Provider store={store}><AppConnected/></Provider>, document.getElementById('root'));
