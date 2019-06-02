@@ -1,9 +1,14 @@
 import * as actions from './appActions';
+import Api from './../../api';
 
 export function init() {
   return async function initThunk(dispatch) {
     try {
       dispatch(actions.initialization.start());
+
+      Api.init();
+
+      // TODO: fetch user
 
       dispatch(actions.initialization.success());
     } catch (error) {

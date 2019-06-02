@@ -1,0 +1,51 @@
+.blockLogin {
+  width: 30%;
+  height: 315px;
+  margin-top: 81px;
+  padding: 25px;
+}
+
+.login {
+  margin: 0 0 7%;
+  font-family: Helvetica;
+  font-size: 22px;
+  line-height: 25px;
+  color: #282828;
+}
+
+.contentRight {
+  display: flex;
+  justify-content: flex-end;
+  margin: 5px 0 4.4%;
+}
+
+.rememberPass {
+  font-family: Helvetica;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #8C8C8C;
+}
+
+.registerNow {
+  margin: 21px 0 0 0;
+  width: 34%;
+  height: 76px;
+  
+  span {
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 16px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: #2A2A2A;
+
+    a {
+      color: #349A89;
+      text-transform: uppercase;
+    }
+  }
+}
