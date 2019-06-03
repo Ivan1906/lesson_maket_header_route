@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import PrivateRoute from '../Tools/PrivateRoute/PrivateRoute';
 
 import LoginContainer from './Login/LoginContainer';
-import Register from './Register/Register';
+import RegisterContainer from './Register/RegisterContainer';
 import Home from './Home/Home';
 import Listing from './Listing/Listing';
 import UserListings from './UserListings/UserListings';
@@ -32,7 +32,7 @@ export default function Router() {
       <Switch>
         <Route exact path={routes.home} component={Home}/>
         <Route path={routes.login} component={LoginContainer}/>
-        <Route path={routes.register} component={Register}/>
+        <Route path={routes.register} component={RegisterContainer}/>
         <Route path={routes.listingsById} component={Listing}/>
         <Route path={routes.userListsings} component={UserListings}/>
         <Route path={routes.userListsings} component={UserListings}/>

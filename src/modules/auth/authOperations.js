@@ -36,6 +36,7 @@ export function register(body) {
 
       dispatch(actions.register.success(user));
     } catch (error) {
+      console.error(error);
       dispatch(actions.register.error({message: error.message}));
     }
   }

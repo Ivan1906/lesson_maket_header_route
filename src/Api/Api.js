@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const urls = {
-  'login': '/api/auth/login'
+  'login': '/api/auth/login',
+  'register': '/api/auth/register',
+  'getViewer': '/api/account/user'
 }
 
 export const Auth = {
@@ -33,6 +35,10 @@ export const Auth = {
     return axios.post(urls.login, body);
   },
 
+  register(body) {
+    return axios.post(urls.register, body);
+  },
+
   logout() {
     this._token = null;
     try {
@@ -56,6 +62,12 @@ export const Auth = {
 
   _setTokenToAxios(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
+};
+
+export const Viewer = {
+  get() {
+    return axios.get(urls.getViewer);
   }
 };
 

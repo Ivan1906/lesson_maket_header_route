@@ -2,18 +2,20 @@ import {connect} from 'react-redux'
 import {compose, withHandlers, withStateHandlers} from 'recompose';
 import {withRouter} from 'react-router-dom';
 import {authOperations} from '../../modules/auth';
-import LoginView from './LoginView';
+import RegisterView from './RegisterView';
 
 const mapStateToProps = (state) => ({isLoading: state.auth.login.isLoading});
 
 const mapDispatchToProps = {
-  login: authOperations.login
+  register: authOperations.register
 };
 
 const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps), withStateHandlers({
   fields: {
     email: '',
-    password: ''
+    fullName: '',
+    password: '',
+    confirmPassword: ''
   }
 }, {
   handleFieldChange: (state) => (fieldName, value) => ({
@@ -24,9 +26,9 @@ const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps)
     }
   })
 }), withHandlers({
-  handleLogin: props => async() => {
-    await props.login(props.fields);
+  handleRegister: props => () => {
+    props.register(props.fields);
   }
 }));
 
-export default enhance(LoginView);
+export default enhance(RegisterView);
