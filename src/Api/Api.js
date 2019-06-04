@@ -26,6 +26,7 @@ export const Auth = {
         .getItem('token');
       this._token = JSON.parse(token);
       this._setTokenToAxios(token);
+      console.log(axios.defaults.headers.common.Authorization);
     } catch (e) {
       console.error(e);
     }

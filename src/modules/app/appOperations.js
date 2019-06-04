@@ -8,7 +8,8 @@ export function init() {
       dispatch(actions.initialization.start());
 
       Api.init();
-      await dispatch(viewerOperations.fetchViewer());
+      console.log(Api.Auth.isLoggedIn);
+      Api.Auth.isLoggedIn && await dispatch(viewerOperations.fetchViewer());
       // TODO: fetch user
 
       dispatch(actions.initialization.success());

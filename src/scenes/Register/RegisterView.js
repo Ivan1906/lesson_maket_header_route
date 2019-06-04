@@ -7,7 +7,7 @@ import FormInput from './../../components/Input/FormInput/FormInput';
 import password from '../../img/password.svg';
 import Button from './../../components/Button/Button';
 
-function RegisterView({fields, handleFieldChange, handleRegister}) {
+function RegisterView({fields, handleFieldChange, handleRegister, isLoading}) {
   return (
     <React.Fragment>
       <Header theme="light"/>
@@ -62,7 +62,8 @@ function RegisterView({fields, handleFieldChange, handleRegister}) {
             onChange={handleFieldChange}/>
 
           <Button
-            text="Continue"
+            text="Register"
+            isLoading={isLoading}
             style={{
             height: '58px',
             marginTop: '32px'

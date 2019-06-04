@@ -7,7 +7,7 @@ import FormInput from '../../components/Input/FormInput/FormInput';
 import Button from '../../components/Button/Button';
 import password from '../../img/password.svg';
 
-function Login({fields, handleLogin, handleFieldChange}) {
+function Login({fields, handleLogin, handleFieldChange, isLoading}) {
   return (
     <React.Fragment>
       <Header theme="light"/>
@@ -45,6 +45,7 @@ function Login({fields, handleLogin, handleFieldChange}) {
 
           <Button
             text="Continue"
+            isLoading={isLoading}
             style={{
             height: '58px'
           }}
