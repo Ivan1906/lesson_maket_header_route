@@ -1,0 +1,20 @@
+import * as actions from './appActions';
+import Api from './../../api';
+import {viewerOperations} from '../viewer';
+
+export function init() {
+  return async function initThunk(dispatch) {
+    try {
+      dispatch(actions.initialization.start());
+
+      Api.init();
+      Api.Auth.isLoggedIn && await dispatch(viewerOperations.fetchViewer());
+      // TODO: fetch user
+
+      dispatch(actions.initialization.success());
+    } catch (error) {
+      console.error(error);
+      dispatch(actions.initialization.error({message: error.message}));
+    }
+  }
+}
