@@ -4,10 +4,10 @@ import s from './FormInput.module.scss';
 import Input from '../Input/Input';
 
 function FormInput(props) {
-  let {label} = props;
+  let {label, name} = props;
   return (
     <div className={s.formGroup}>
-      <label>{label}</label>
+      <label htmlFor={name}>{label}</label>
       <Input {...props}/>
     </div>
   )

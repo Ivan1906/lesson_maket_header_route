@@ -4,7 +4,7 @@ import PrivateRoute from '../Tools/PrivateRoute/PrivateRoute';
 
 import LoginContainer from './Login/LoginContainer';
 import RegisterContainer from './Register/RegisterContainer';
-import Home from './Home/Home';
+import Home from './LatestList/LatestListContainer';
 import Listing from './Listing/Listing';
 import UserListings from './UserListings/UserListings';
 import Inbox from './Inbox/Inbox';

@@ -3,7 +3,8 @@ import axios from 'axios';
 const urls = {
   'login': '/api/auth/login',
   'register': '/api/auth/register',
-  'getViewer': '/api/account/user'
+  'getViewer': '/api/account/user',
+  'productsLatest': '/api/products/latest'
 }
 
 export const Auth = {
@@ -26,7 +27,6 @@ export const Auth = {
         .getItem('token');
       this._token = JSON.parse(token);
       this._setTokenToAxios(token);
-      console.log(axios.defaults.headers.common.Authorization);
     } catch (e) {
       console.error(e);
     }
@@ -71,6 +71,12 @@ export const Viewer = {
     return axios.get(urls.getViewer);
   }
 };
+
+export const Products = {
+  getLatest() {
+    return axios.get(urls.productsLatest);
+  }
+}
 
 export function init() {
   Auth.init();
