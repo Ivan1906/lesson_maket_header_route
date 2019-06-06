@@ -15,9 +15,11 @@ function LatestListView({products, isLoading}) {
         <Search/>
       </Header>
       <div className={s.container}>
-        <div className={s.paramsPanel}></div>
-        <div className={s.listProducts}>
-          {products.map(product => <Product key={product.id} product={product}/>)}
+        <div className="columnTwo offsetColumnOne">
+          <div className={s.paramsPanel}></div>
+          <div className={s.listProducts}>
+            {products.map(product => <Product key={product.id} product={product}/>)}
+          </div>
         </div>
       </div>
     </React.Fragment>
