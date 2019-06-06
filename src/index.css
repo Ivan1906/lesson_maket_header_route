@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #root {
@@ -12,6 +13,29 @@ body {
   max-width: 1440px;
   height: 1080px;
   background: #F8F8F8;
+}
+
+.columnOne {
+  display: flex;
+  justify-content: flex-end;
+  width: 15%;
+  height: inherit;
+}
+
+.columnTwo {
+  padding-left: 3%;
+  width: 65%;
+  height: inherit;
+}
+
+.offsetColumnOne {
+  margin-left: 15%;
+}
+
+.columnThree {
+  display: flex;
+  width: 20%;
+  height: inherit;
 }
 
 a {
