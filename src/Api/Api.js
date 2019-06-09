@@ -4,8 +4,11 @@ const urls = {
   'login': '/api/auth/login',
   'register': '/api/auth/register',
   'getViewer': '/api/account/user',
-  'productsLatest': '/api/products/latest'
-}
+  'productsLatest': '/api/products/latest',
+  'addproduct': '/api/products',
+  'uploadImages': '/api/upload/images',
+  'getProduct': '/api/products/:id'
+};
 
 export const Auth = {
   _token: null,
@@ -26,7 +29,7 @@ export const Auth = {
         .localStorage
         .getItem('token');
       this._token = JSON.parse(token);
-      this._setTokenToAxios(token);
+      this._setTokenToAxios(this._token);
     } catch (e) {
       console.error(e);
     }
@@ -75,6 +78,30 @@ export const Viewer = {
 export const Products = {
   getLatest() {
     return axios.get(urls.productsLatest);
+  },
+
+  addProduct(body) {
+    return axios.post(urls.addproduct, body);
+  },
+
+  getProductById(id) {
+    return axios.get(urls.getProduct.replace(':id', id));
+  },
+
+  uploadImages(body) {
+    let bodyFormData = new FormData();
+    bodyFormData.append('image', body);
+
+    return axios({
+      method: 'post',
+      url: urls.uploadImages,
+      data: bodyFormData,
+      config: {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    });
   }
 }
 

@@ -8,7 +8,7 @@ function LatestListView({products, isLoading}) {
   if (isLoading) {
     return <div>Loading ...</div>
   }
-  console.log(products);
+
   return (
     <React.Fragment>
       <Header theme="dark">
@@ -18,7 +18,9 @@ function LatestListView({products, isLoading}) {
         <div className="columnTwo offsetColumnOne">
           <div className={s.paramsPanel}></div>
           <div className={s.listProducts}>
-            {products.map(product => <Product key={product.id} product={product}/>)}
+            {products
+              .slice(0, 12)
+              .map(product => <Product key={product.id} product={product}/>)}
           </div>
         </div>
       </div>

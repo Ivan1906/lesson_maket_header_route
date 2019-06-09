@@ -3,54 +3,71 @@ import s from './Login.module.scss';
 import {Link} from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
-import FormInput from '../../components/Input/FormInput/FormInput';
+import {FormInput, FormContainer, Input} from '../../components/Form';
+import {required, isEmail} from '../../Tools/Errors/handleErrors';
 import Button from '../../components/Button/Button';
 import password from '../../img/password.svg';
 
-function Login({fields, handleLogin, handleFieldChange, isLoading}) {
+function Login({
+  handleLogin,
+  setInitialValue,
+  initialValue,
+  isLoading,
+  errorMessage,
+  disabledBtn
+}) {
   return (
     <React.Fragment>
       <Header theme="light"/>
       <div className="center" style={{
         flexDirection: "column"
       }}>
-        <div className={`${s.blockLogin} panel`}>
-          <span className={`${s.login} center`}>Login</span>
-          <FormInput
-            name="email"
-            fields={fields}
-            label="Email"
-            type="email"
-            style={{
-            height: "58px"
-          }}
-            placeholder="Example@gmail.com"
-            onChange={handleFieldChange}/>
+        <FormContainer initialValue={initialValue} setInitialValue={setInitialValue}>
+          <div className={`${s.blockLogin} panel`}>
+            <span className={`${s.login} center`}>Login</span>
+            {errorMessage && (
+              <span className="error">{errorMessage.message}</span>
+            )}
 
-          <FormInput
-            name="password"
-            fields={fields}
-            label="Password"
-            type="password"
-            style={{
-            height: "58px"
-          }}
-            img={password}
-            posImg="right"
-            onChange={handleFieldChange}/>
+            <FormInput
+              name="email"
+              label="Email"
+              validate={isEmail}
+              type="email"
+              style={{
+              height: "58px"
+            }}
+              placeholder="Example@gmail.com">
+              <Input/>
+            </FormInput>
 
-          <div className={s.contentRight}>
-            <span className={s.rememberPass}>Don’t remember password?</span>
+            <FormInput
+              name="password"
+              label="Password"
+              validate={required}
+              type="password"
+              style={{
+              height: "58px"
+            }}
+              img={password}
+              posImg="right">
+              <Input/>
+            </FormInput>
+
+            <div className={s.contentRight}>
+              <span className={s.rememberPass}>Don’t remember password?</span>
+            </div>
+
+            <Button
+              text="Continue"
+              isLoading={isLoading}
+              disabledBtn={disabledBtn}
+              style={{
+              height: '58px'
+            }}
+              onClick={handleLogin}/>
           </div>
-
-          <Button
-            text="Continue"
-            isLoading={isLoading}
-            style={{
-            height: '58px'
-          }}
-            onClick={handleLogin}/>
-        </div>
+        </FormContainer>
 
         <div className={`${s.registerNow} panel center`}>
           <span>I have no account,&nbsp;

@@ -9,7 +9,6 @@ export function init() {
 
       Api.init();
       Api.Auth.isLoggedIn && await dispatch(viewerOperations.fetchViewer());
-      // TODO: fetch user
 
       dispatch(actions.initialization.success());
     } catch (error) {

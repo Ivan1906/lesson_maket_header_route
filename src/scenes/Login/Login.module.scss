@@ -1,6 +1,7 @@
 .blockLogin {
+  box-sizing: content-box;
   width: 30%;
-  height: 319px;
+  //height: 319px;
   margin-top: 81px;
   padding: 25px 24px 21px;
 }
@@ -31,7 +32,7 @@
 
 .registerNow {
   margin: 21px 0 0 0;
-  width: 34%;
+  width: calc(30% + 2* 24px);
   height: 76px;
   
   span {

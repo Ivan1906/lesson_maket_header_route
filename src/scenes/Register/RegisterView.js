@@ -3,73 +3,91 @@ import {Link} from 'react-router-dom';
 import s from './Register.module.scss';
 
 import Header from '../../components/Header/Header';
-import FormInput from './../../components/Input/FormInput/FormInput';
+import {FormInput, Input, FormContainer} from './../../components/Form';
 import password from '../../img/password.svg';
 import Button from './../../components/Button/Button';
+import {isEmail, required} from '../../Tools/Errors/handleErrors';
 
-function RegisterView({fields, handleFieldChange, handleRegister, isLoading}) {
+function RegisterView({
+  initialValue,
+  setInitialValue,
+  handleRegister,
+  disabledBtn,
+  isLoading,
+  errorMessage
+}) {
   return (
     <React.Fragment>
       <Header theme="light"/>
       <div className="center" style={{
         flexDirection: "column"
       }}>
-        <div className={`${s.blockRegister} panel`}>
-          <span className={`${s.register} center`}>Register</span>
-          <FormInput
-            name="email"
-            fields={fields}
-            label="Email"
-            type="email"
-            style={{
-            height: "58px"
-          }}
-            placeholder="Example@gmail.com"
-            onChange={handleFieldChange}/>
+        <FormContainer initialValue={initialValue} setInitialValue={setInitialValue}>
+          <div className={`${s.blockRegister} panel`}>
+            <span className={`${s.register} center`}>Register</span>
+            {errorMessage && (
+              <span className="error">{errorMessage.message}</span>
+            )}
 
-          <FormInput
-            name="fullName"
-            fields={fields}
-            label="Full name"
-            style={{
-            height: "58px"
-          }}
-            placeholder="Tony Stark"
-            onChange={handleFieldChange}/>
+            <FormInput
+              name="email"
+              label="Email"
+              validate={isEmail}
+              type="email"
+              style={{
+              height: "58px"
+            }}
+              placeholder="Example@gmail.com">
+              <Input/>
+            </FormInput>
 
-          <FormInput
-            name="password"
-            fields={fields}
-            label="Password"
-            type="password"
-            style={{
-            height: "58px"
-          }}
-            img={password}
-            posImg="right"
-            onChange={handleFieldChange}/>
+            <FormInput
+              name="fullName"
+              label="Full name"
+              validate={required}
+              style={{
+              height: "58px"
+            }}
+              placeholder="Tony Stark">
+              <Input/>
+            </FormInput>
 
-          <FormInput
-            name="confirmPassword"
-            fields={fields}
-            label="Password again"
-            type="password"
-            style={{
-            height: "58px"
-          }}
-            img={password}
-            posImg="right"
-            onChange={handleFieldChange}/>
+            <FormInput
+              name="password"
+              label="Password"
+              type="password"
+              validate={required}
+              style={{
+              height: "58px"
+            }}
+              img={password}
+              posImg="right">
+              <Input/>
+            </FormInput>
 
-          <Button
-            text="Register"
-            isLoading={isLoading}
-            style={{
-            height: '58px',
-            marginTop: '32px'
-          }}
-            onClick={handleRegister}/>
-        </div>
+            <FormInput
+              name="confirmPassword"
+              label="Password again"
+              validate={required}
+              style={{
+              height: "58px"
+            }}
+              img={password}
+              posImg="right">
+              <Input type="password"/>
+            </FormInput>
+
+            <Button
+              text="Register"
+              disabledBtn={disabledBtn}
+              isLoading={isLoading}
+              style={{
+              height: '58px',
+              marginTop: '32px'
+            }}
+              onClick={handleRegister}/>
+          </div>
+        </FormContainer>
 
         <div className={`${s.loginNow} panel center`}>
           <span>I already have an account,&nbsp;

@@ -48,6 +48,10 @@ a {
   align-items: center;
 }
 
+.disabledBtn {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 .panel {
   background: #FFFFFF;
@@ -68,4 +72,9 @@ a {
 .darkThemeWithChildren {
   height: 166px;
   background: linear-gradient(180deg, #090810 0%, #171236 100%);
+}
+
+.error {
+  color: red;
+  margin: 0;
 }
