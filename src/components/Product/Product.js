@@ -3,13 +3,14 @@ import s from './Product.module.scss';
 import dislike from '../../img/dislike.svg';
 
 function Product({product}) {
-  console.log(product);
-  if (product.photos === null) {
-    return <div>No photos!!!</div>
-  }
   return (
     <div className={s.product}>
-      <img className={s.mainImg} src={product.photos[0]} alt={product.title}/>
+      <img
+        className={s.mainImg}
+        src={product.photos && product.photos.length > 0
+        ? product.photos[0]
+        : ''}
+        alt={product.title}/>
       <div className={`${s.circle} center`}>
         <img src={dislike} alt="heard"/>
       </div>
