@@ -6,7 +6,7 @@ import LoginContainer from './Login/LoginContainer';
 import RegisterContainer from './Register/RegisterContainer';
 import AddProductContainer from './AddProduct/AddProductContainer';
 import ProductDetailContainer from './ProductDetail/ProductDetailContainer';
-import Home from './LatestList/LatestListContainer';
+import LatestListContainer from './LatestList/LatestListContainer';
 import Listing from './Listing/Listing';
 import UserListings from './UserListings/UserListings';
 import Inbox from './Inbox/Inbox';
@@ -17,6 +17,7 @@ export const routes = {
   register: '/register',
   addProduct: '/addproduct',
   productDetail: '/product/:id',
+  productMessage: '/chat/:productId',
   userListsings: '/users/:id',
   listingsById: '/listings/:id',
   profile: '/profile',
@@ -34,7 +35,7 @@ export default function Router() {
   return (
     <React.Fragment>
       <Switch>
-        <Route exact path={routes.home} component={Home}/>
+        <Route exact path={routes.home} component={LatestListContainer}/>
         <Route path={routes.login} component={LoginContainer}/>
         <Route path={routes.register} component={RegisterContainer}/>
         <Route path={routes.addProduct} component={AddProductContainer}/>

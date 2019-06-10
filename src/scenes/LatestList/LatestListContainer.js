@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
-import {compose, lifecycle} from 'recompose';
+import {compose, lifecycle, withHandlers} from 'recompose';
 import LatestListView from './LatestListView';
 import {productsOperations, productsSelectors} from '../../modules/products';
+import {routes} from './../router';
 
 const mapStateToProps = state => ({
   products: productsSelectors.getLatest(state),
@@ -18,6 +19,16 @@ const enhancer = compose(connect(mapStateToProps, mapDispatchToProps), lifecycle
       this
         .props
         .fetchLatest();
+    }
+  }
+}), withHandlers({
+  handleClickProduct: props => (evt, id) => {
+    if (evt.target.getAttribute('name') === 'heart') {
+      // TODO: set like for product by id
+    } else {
+      props
+        .history
+        .push(routes.productDetail.replace(':id', id));
     }
   }
 }));

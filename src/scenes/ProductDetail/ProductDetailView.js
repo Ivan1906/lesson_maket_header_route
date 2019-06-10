@@ -1,17 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 import s from './ProductDetail.module.scss';
-import Header from './../../components/Header/Header';
+import Header from '../../components/Header/Header';
 import location from '../../img/location.svg';
-import Avatar from './../../components/Avatar/Avatar';
+import Avatar from '../../components/Avatar/AvatarContainer';
 import Button from './../../components/Button/Button';
+import {Link} from 'react-router-dom';
+import {routes} from './../router';
 
 function ProductDetailView({
   product,
-  user,
+  owner,
   ...props
 }) {
-  console.log(props.owner)
+  const styleAvatar = {
+    background: "red",
+    height: "72px",
+    width: "72px",
+    fontSize: "35px"
+  };
+
   return (
     <React.Fragment>
       <Header theme="dark"/>
@@ -44,10 +52,12 @@ function ProductDetailView({
               <div className={s.userBlock}>
                 <div className={s.headerUserBlock}></div>
                 <div className={s.avatar}>
-                  <Avatar name="Yanik Ivan" color="red" height="72px" fontSize="35px"/>
+                  <Avatar owner={owner} style={styleAvatar}/>
                 </div>
-                <div className={s.userName}>{user
-                    ? user.fullName
+                <div className={s.userName}>{owner
+                    ? (
+                      <Link to={routes.home}>{owner.fullName}</Link>
+                    )
                     : ''}</div>
               </div>
 

@@ -14,9 +14,12 @@ export const getLatest = createSelector([
 export const getProduct = createSelector((state, id) => getProductEntities(state)[id], item => item);
 
 export const getProductOwner = createSelector((state, id) => {
-  const users = getUserEntities(state);
-  const products = getProductEntities(state);
-  const product = products[id];
-  console.log(product)
-  return users[product.owner || product.ownerId]
+  let users = getUserEntities(state);
+  let products = getProductEntities(state);
+  if (Object.values(users).length > 0) {
+    const product = products[id];
+    return users[product.owner || product.ownerId]
+  } else {
+    return;
+  }
 }, item => item);
