@@ -52,7 +52,6 @@ export function getProductById(id) {
         .getProductById(id);
 
       const {result, entities} = normalize(res.data, schemas.Product);
-      console.log(entities);
 
       dispatch(actions.addProduct.success({result, entities}));
     } catch (error) {

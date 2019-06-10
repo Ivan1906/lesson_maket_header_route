@@ -5,6 +5,9 @@ import logoDark from './Logo_dark.svg';
 import heartLight from './Heart_light.svg';
 import heartDark from './Heart_dark.svg';
 import s from './Header.module.scss';
+import Api from '../../api/index';
+import Avatar from '../Avatar/AvatarContainer';
+import {routes} from './../../scenes/router';
 
 function Header({theme, children}) {
   let heightHeader = theme === 'light'
@@ -13,17 +16,27 @@ function Header({theme, children}) {
       ? 'darkThemeWithChildren'
       : 'darkThemeWithoutChildren';
 
+  const styleAvatar = {
+    width: "40px",
+    height: "40px",
+    fontSize: "14px",
+    background: "red",
+    marginLeft: "38px",
+    cursor: "pointer"
+  };
+
   return (
     <React.Fragment>
       <div className={`${s.wrapper} ${heightHeader}`}>
         <div className={s.container}>
           <div className="columnOne">
-            <img
+            <Link to={routes.home}><img
               className={s.logo}
               src={theme === 'light'
-              ? logoLight
-              : logoDark}
+      ? logoLight
+      : logoDark}
               alt="Apiko"/>
+            </Link>
           </div>
 
           <div className={`${s.center} columnTwo`}>
@@ -41,15 +54,19 @@ function Header({theme, children}) {
           </div>
 
           <div className={`columnThree ${s.btnLogin}`}>
-            <Link
-              to="/login"
-              style={{
-              color: theme === 'light'
-                ? '#2B2B2B'
-                : '#FFF'
-            }}>
-              login
-            </Link>
+            {Api.Auth.isLoggedIn
+              ? <Avatar style={styleAvatar}/>
+              : (
+                <Link
+                  to="/login"
+                  style={{
+                  color: theme === 'light'
+                    ? '#2B2B2B'
+                    : '#FFF'
+                }}>
+                  login
+                </Link>
+              )}
 
             <img
               className={s.heart}
