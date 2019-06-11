@@ -10,6 +10,7 @@ import LatestListContainer from './LatestList/LatestListContainer';
 import Listing from './Listing/Listing';
 import UserListings from './UserListings/UserListings';
 import Inbox from './Inbox/Inbox';
+import ModalSwitchConatiner from '../components/Modal/ModalSwitch/ModalSwitchContainer';
 
 export const routes = {
   home: '/',
@@ -24,7 +25,8 @@ export const routes = {
   bookmarks: '/bookmarks',
   privacy: '/privacy',
   terms: '/terms',
-  search: '/search'
+  search: '/search',
+  productCreateChat: '/products/:id/createChat'
 };
 
 function NotFound() {
@@ -44,6 +46,7 @@ export default function Router() {
         <Route path={routes.userListsings} component={UserListings}/>
         <Route path={routes.userListsings} component={UserListings}/>
         <PrivateRoute path={routes.privacy} component={Inbox}/>
+        <Route component={ModalSwitchConatiner}/>
         <Route component={NotFound}/>
       </Switch>
     </React.Fragment>
