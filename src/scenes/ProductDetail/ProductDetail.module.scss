@@ -119,13 +119,24 @@
         }
 
         .userName {
-          display: flex;
-          justify-content: center;
-          margin-top: 20%;
+          text-align: center;
+          margin-top: 17%;
           font-family: Helvetica;
           font-size: 15px;
           line-height: 17px;
           color: #2B2B2B;
+        }
+
+        .userLocation {
+          text-align: center;
+          margin-top: 4px;
+          font-family: Helvetica;
+          font-size: 15px;
+          line-height: 17px;
+          color: rgba(43, 43, 43, 0.499918);
+          span {
+            margin-left: 0;
+          }
         }
       }
     }

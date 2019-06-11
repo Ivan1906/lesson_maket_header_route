@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import location from '../../img/location.svg';
 import Avatar from '../../components/Avatar/AvatarContainer';
 import Button from './../../components/Button/Button';
-import {Link} from 'react-router-dom';
+import {Link, generatePath} from 'react-router-dom';
 import {routes} from './../router';
 
 function ProductDetailView({
@@ -59,15 +59,28 @@ function ProductDetailView({
                       <Link to={routes.home}>{owner.fullName}</Link>
                     )
                     : ''}</div>
+                <div className={s.userLocation}>{owner
+                    ? (
+                      <span>{owner.location}</span>
+                    )
+                    : ''}</div>
               </div>
 
-              <Button
-                text="Chat with seller"
-                disabledBtn
-                style={{
-                height: "47px",
-                margin: "15px 0"
-              }}/>
+              <Link
+                to={{
+                pathname: generatePath(routes.productCreateChat, {id: product.id}),
+                state: {
+                  modal: true
+                }
+              }}>
+                <Button
+                  text="Chat with seller"
+                  disabledBtn
+                  style={{
+                  height: "47px",
+                  margin: "15px 0"
+                }}/>
+              </Link>
             </div>
           </div>
         )}
