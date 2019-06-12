@@ -3,6 +3,7 @@ import axios from 'axios';
 const urls = {
   'login': '/api/auth/login',
   'register': '/api/auth/register',
+  'updateUser': '/api/account/user',
   'getViewer': '/api/account/user',
   'productsLatest': '/api/products/latest',
   'addproduct': '/api/products',
@@ -12,6 +13,7 @@ const urls = {
 
 export const Auth = {
   _token: null,
+  _favorites: null,
 
   get isLoggedIn() {
     return !!this._token;
@@ -23,13 +25,34 @@ export const Auth = {
     this._setTokenToAxios(token);
   },
 
+  setFavorites(productId) {
+    this._favorites = this._favorites
+      ? this
+        ._favorites
+        .concat("454")
+      : null;
+    this._setFavorites(productId);
+  },
+
   init() {
     try {
       let token = window
         .localStorage
         .getItem('token');
       this._token = JSON.parse(token);
-      this._setTokenToAxios(this._token);
+      this._favorites = this._setTokenToAxios(this._token);
+      this.initFavorites();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  initFavorites() {
+    try {
+      let favorites = window
+        .localStorage
+        .getItem('favorites');
+      this.favorites = JSON.parse(favorites);
     } catch (e) {
       console.error(e);
     }
@@ -54,6 +77,16 @@ export const Auth = {
     }
   },
 
+  _setFavorites() {
+    try {
+      window
+        .localStorage
+        .setItem('favorites', JSON.stringify(this._favorites),);
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
   _setToken() {
     try {
       window
@@ -72,6 +105,10 @@ export const Auth = {
 export const Viewer = {
   get() {
     return axios.get(urls.getViewer);
+  },
+
+  update(body) {
+    return axios.put(urls.updateUser, body)
   }
 };
 

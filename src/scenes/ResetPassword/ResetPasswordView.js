@@ -1,23 +1,19 @@
 import React from 'react';
-import s from './Login.module.scss';
-import {Link} from 'react-router-dom';
+import s from './ResetPassword.module.scss';
 
 import Header from '../../components/Header/Header';
 import {FormInput, FormContainer, Input} from '../../components/Form';
-import {required, isEmail} from '../../Tools/Errors/handleErrors';
+import {isEmail} from '../../Tools/Errors/handleErrors';
 import Button from '../../components/Button/Button';
-import password from '../../img/password.svg';
-import {routes} from './../router';
 
-function Login({
-  handleLogin,
+function ResetPasswordView({
+  handleRestorePassword,
   setInitialValue,
   initialValue,
   isLoading,
   error,
   disabledBtn
 }) {
-  console.log(error)
   return (
     <React.Fragment>
       <Header theme="light"/>
@@ -26,7 +22,7 @@ function Login({
       }}>
         <FormContainer initialValue={initialValue} setInitialValue={setInitialValue}>
           <div className={`${s.blockLogin} panel`}>
-            <span className={`${s.login} center`}>Login</span>
+            <span className={`${s.reset} center`}>Restore Password</span>
             {error && (
               <span className="error">{error.message}</span>
             )}
@@ -43,44 +39,20 @@ function Login({
               <Input/>
             </FormInput>
 
-            <FormInput
-              name="password"
-              label="Password"
-              validate={required}
-              type="password"
-              style={{
-              height: "58px"
-            }}
-              img={password}
-              posImg="right">
-              <Input/>
-            </FormInput>
-
-            <div className={s.contentRight}>
-              <span className={s.rememberPass}>
-                <Link to={routes.resetPassword}>Don’t remember password?</Link>
-              </span>
-            </div>
-
             <Button
               text="Continue"
               isLoading={isLoading}
               disabledBtn={disabledBtn}
               style={{
-              height: '58px'
+              height: '58px',
+              marginTop: '24px'
             }}
-              onClick={handleLogin}/>
+              onClick={handleRestorePassword}/>
           </div>
         </FormContainer>
-
-        <div className={`${s.registerNow} panel center`}>
-          <span>I have no account,&nbsp;
-            <Link to="/register">register now</Link>
-          </span>
-        </div>
       </div>
     </React.Fragment>
   );
 };
 
-export default Login;
+export default ResetPasswordView;

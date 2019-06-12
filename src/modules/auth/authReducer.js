@@ -11,6 +11,16 @@ const INITIAL_STATE = {
     isLoading: false,
     isError: false,
     error: null
+  },
+  logout: {
+    isLoading: false,
+    isError: false,
+    error: null
+  },
+  resetPassword: {
+    isLoading: false,
+    isError: false,
+    error: null
   }
 };
 
@@ -51,15 +61,68 @@ export default handleActions({
   }),
   [actions.register.success]: (state) => ({
     ...state,
-    login: {
-      ...state.login,
+    register: {
+      ...state.register,
       isLoading: false
     }
   }),
   [actions.register.error]: (state, action) => ({
     ...state,
-    isLoading: false,
-    isError: true,
-    error: action.payload
+    register: {
+      ...state.register,
+      isLoading: false,
+      isError: true,
+      error: action.payload
+    }
+  }),
+  [actions.logout.start]: (state) => ({
+    ...state,
+    logout: {
+      ...state.logout,
+      isLoading: true,
+      isError: false,
+      error: null
+    }
+  }),
+  [actions.logout.success]: (state) => ({
+    ...state,
+    logout: {
+      ...state.logout,
+      isLoading: false
+    }
+  }),
+  [actions.logout.error]: (state, action) => ({
+    ...state,
+    logout: {
+      ...state.logout,
+      isLoading: false,
+      isError: true,
+      error: action.payload
+    }
+  }),
+  [actions.resetPassword.start]: (state) => ({
+    ...state,
+    resetPassword: {
+      ...state.resetPassword,
+      isLoading: true,
+      isError: false,
+      error: null
+    }
+  }),
+  [actions.resetPassword.success]: (state) => ({
+    ...state,
+    resetPassword: {
+      ...state.resetPassword,
+      isLoading: false
+    }
+  }),
+  [actions.resetPassword.error]: (state, action) => ({
+    ...state,
+    resetPassword: {
+      ...state.resetPassword,
+      isLoading: false,
+      isError: true,
+      error: action.payload
+    }
   })
 }, INITIAL_STATE);

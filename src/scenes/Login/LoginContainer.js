@@ -5,7 +5,7 @@ import {authOperations} from '../../modules/auth';
 import LoginView from './LoginView';
 import {routes} from '../router';
 
-const mapStateToProps = (state) => ({isLoading: state.auth.login.isLoading, errorMessage: state.auth.login.error});
+const mapStateToProps = (state) => ({isLoading: state.auth.login.isLoading, error: state.auth.login.error});
 
 const mapDispatchToProps = {
   login: authOperations.login
@@ -32,9 +32,11 @@ const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps)
       changeDisabledBtn(() => disabledBtn = false);
     }
   },
-  handleLogin: ({history, login, initialValue}) => async() => {
+  handleLogin: ({history, login, initialValue, error}) => async() => {
     await login(initialValue);
-    history.push(routes.home);
+    if (!error) {
+      history.push(routes.home);
+    }
   }
 }));
 
