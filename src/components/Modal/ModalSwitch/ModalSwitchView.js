@@ -4,9 +4,10 @@ import {Route, Switch} from 'react-router-dom';
 import {routes} from '../../../scenes/router';
 
 function ModalSwitchView(props) {
-  debugger
+
   let {location, previousLocation} = props;
   console.log('ModalSwitchView', location, previousLocation)
+  console.log('ModalSwitchView', previousLocation !== location)
 
   let isModal = !!(location.state && location.state.modal && previousLocation !== location);
   console.log('ModalSwitchView', isModal)

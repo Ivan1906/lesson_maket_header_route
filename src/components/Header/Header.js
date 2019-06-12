@@ -42,7 +42,9 @@ function Header({theme, children}) {
           <div className={`${s.center} columnTwo`}>
 
             <div className={s.right}>
-              <div className={`${s.btnShell} center`}>shell</div>
+              <Link to={routes.addProduct}>
+                <div className={`${s.btnShell} center`}>shell</div>
+              </Link>
             </div>
 
             <div

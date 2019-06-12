@@ -16,6 +16,7 @@ function RegisterView({
   isLoading,
   errorMessage
 }) {
+  console.log(errorMessage)
   return (
     <React.Fragment>
       <Header theme="light"/>
