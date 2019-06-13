@@ -7,12 +7,15 @@ import Avatar from '../../components/Avatar/AvatarContainer';
 import Button from './../../components/Button/Button';
 import {Link, generatePath} from 'react-router-dom';
 import {routes} from './../router';
+import Api from '../../api';
 
 function ProductDetailView({
   product,
   owner,
   ...props
 }) {
+  product = Api.listProducts.find(product => product.id === props.match.params.id)
+
   const styleAvatar = {
     background: "red",
     height: "72px",
@@ -24,30 +27,32 @@ function ProductDetailView({
     <React.Fragment>
       <Header theme="dark"/>
       <div className={s.container}>
-        {props.isLoading && (
-          <div>Loading ...</div>
-        )}
-        {product && (
-          <div className={`${s.product} columnTwo offsetColumnOne`}>
-            <div className={`${s.columnLeft} ${s.borderColumn}`}>
-              <div className={s.productImage}>
-                <img src={product.photos[0]} alt={product.title}/>
-                <div className={s.price}>$ {product.price}</div>
-              </div>
-              <div className={s.textContent}>
-                <div>
-                  <span className={s.name}>{product.title}</span>
-                  <span className={s.date}>{moment(product.createdAt).format('dddd HH:mm')}</span>
+        
+        <div className={`${s.product} columnTwo offsetColumnOne`}>
+          {props.isLoading && (
+            <div>Loading ...</div>
+          )}
+          {product && (
+            <React.Fragment>
+              <div className={`${s.columnLeft} ${s.borderColumn}`}>
+                <div className={s.productImage}>
+                  <img src={product.photos[0]} alt={product.title}/>
+                  <div className={s.price}>$ {product.price}</div>
                 </div>
-                <div className={s.locationBlock}>
-                  <img src={location} alt="location"/>
-                  <span className={s.location}>{product.location}</span>
+                <div className={s.textContent}>
+                  <div>
+                    <span className={s.name}>{product.title}</span>
+                    <span className={s.date}>{moment(product.createdAt).format('dddd HH:mm')}</span>
+                  </div>
+                  <div className={s.locationBlock}>
+                    <img src={location} alt="location"/>
+                    <span className={s.location}>{product.location}</span>
+                  </div>
+                  <hr/>
+                  <div className={s.description}>{product.description}</div>
                 </div>
-                <hr/>
-                <div className={s.description}>{product.description}</div>
               </div>
 
-            </div>
             <div className={s.columnRight}>
               <div className={s.userBlock}>
                 <div className={s.headerUserBlock}></div>
@@ -82,8 +87,9 @@ function ProductDetailView({
                 }}/>
               </Link>
             </div>
-          </div>
-        )}
+          </React.Fragment>
+          )}
+        </div>
       </div>
     </React.Fragment>
   )

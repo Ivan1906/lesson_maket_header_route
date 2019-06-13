@@ -5,6 +5,7 @@ import PrivateRoute from '../Tools/PrivateRoute/PrivateRoute';
 
 import LoginContainer from './Login/LoginContainer';
 import RegisterContainer from './Register/RegisterContainer';
+import ProfileContainer from './Profile/ProfileContainer';
 import AddProductContainer from './AddProduct/AddProductContainer';
 import ProductDetailContainer from './ProductDetail/ProductDetailContainer';
 import LatestListContainer from './LatestList/LatestListContainer';
@@ -25,6 +26,8 @@ export const routes = {
   userListsings: '/users/:id',
   listingsById: '/listings/:id',
   profile: '/profile',
+  editProfile: '/profile/:id',
+  logout: '/logout',
   bookmarks: '/bookmarks',
   privacy: '/privacy',
   terms: '/terms',
@@ -37,7 +40,7 @@ function NotFound() {
 }
 
 export default function Router() {
-  console.log(window.history)
+  
   return (
     <React.Fragment>
       <Switch>
@@ -47,6 +50,8 @@ export default function Router() {
 
         <Route path={routes.register} component={RegisterContainer}/>
         <Route path={routes.resetPassword} component={ResetPasswordContainer}/>
+        <Route path={routes.profile} component={ProfileContainer}/>
+        <Route path={routes.editProfile} component={ProfileContainer}/>
         <Route path={routes.addProduct} component={AddProductContainer}/>
         <Route path={routes.productDetail} component={ProductDetailContainer}/>
         <Route path={routes.listingsById} component={Listing}/>

@@ -56,7 +56,7 @@ function Header({theme, children}) {
           </div>
 
           <div className={`columnThree ${s.btnLogin}`}>
-            {Api.Auth.isLoggedIn
+            {!Api.Auth.isLoggedIn
               ? <Avatar style={styleAvatar}/>
               : (
                 <Link

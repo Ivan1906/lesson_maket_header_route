@@ -8,6 +8,7 @@ import {required, isEmail} from '../../Tools/Errors/handleErrors';
 import Button from '../../components/Button/Button';
 import password from '../../img/password.svg';
 import {routes} from './../router';
+import Alert from '../../components/Alert/Alert';
 
 function Login({
   handleLogin,
@@ -17,7 +18,6 @@ function Login({
   error,
   disabledBtn
 }) {
-  console.log(error)
   return (
     <React.Fragment>
       <Header theme="light"/>
@@ -28,7 +28,7 @@ function Login({
           <div className={`${s.blockLogin} panel`}>
             <span className={`${s.login} center`}>Login</span>
             {error && (
-              <span className="error">{error.message}</span>
+              <Alert message={error.message}/>
             )}
 
             <FormInput

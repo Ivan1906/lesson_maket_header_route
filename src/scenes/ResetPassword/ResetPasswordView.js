@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import {FormInput, FormContainer, Input} from '../../components/Form';
 import {isEmail} from '../../Tools/Errors/handleErrors';
 import Button from '../../components/Button/Button';
+import Alert from '../../components/Alert/Alert';
 
 function ResetPasswordView({
   handleRestorePassword,
@@ -24,7 +25,7 @@ function ResetPasswordView({
           <div className={`${s.blockLogin} panel`}>
             <span className={`${s.reset} center`}>Restore Password</span>
             {error && (
-              <span className="error">{error.message}</span>
+              <Alert message={error.message}/>
             )}
 
             <FormInput

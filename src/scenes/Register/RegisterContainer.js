@@ -3,6 +3,7 @@ import {compose, withHandlers, withState} from 'recompose';
 import {withRouter} from 'react-router-dom';
 import {authOperations} from '../../modules/auth';
 import RegisterView from './RegisterView';
+import { routes } from '../router';
 
 const mapStateToProps = (state) => ({isLoading: state.auth.login.isLoading, errorMessage: state.auth.register.error});
 
@@ -33,8 +34,14 @@ const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps)
       changeDisabledBtn(() => disabledBtn = false);
     }
   },
-  handleRegister: ({initialValue, register}) => () => {
-    register(initialValue);
+  handleRegister: ({initialValue, register, history, errorMessage}) => async () => {
+    try {
+      await register(initialValue);
+
+      if (!errorMessage) {
+        history.push(routes.home);
+      }
+    } catch(e) {}
   }
 }));
 

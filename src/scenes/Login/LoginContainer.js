@@ -33,10 +33,13 @@ const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps)
     }
   },
   handleLogin: ({history, login, initialValue, error}) => async() => {
-    await login(initialValue);
-    if (!error) {
-      history.push(routes.home);
-    }
+    try {
+      await login(initialValue);
+
+      if (!error) {
+        history.push(routes.home);
+      }
+    } catch(e) {}
   }
 }));
 

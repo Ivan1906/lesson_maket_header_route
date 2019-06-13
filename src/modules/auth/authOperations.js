@@ -18,6 +18,7 @@ export function login(body) {
     } catch (error) {
       console.error(error);
       dispatch(actions.login.error({message: error.message}));
+      throw error;
     }
   }
 };
@@ -39,6 +40,7 @@ export function register(body) {
     } catch (error) {
       console.error(error);
       dispatch(actions.register.error({message: error.message}));
+      throw error;
     }
   }
 }
@@ -75,6 +77,7 @@ export function resetPassword() {
     } catch (error) {
       console.error(error);
       dispatch(actions.resetPassword.error({message: error.message}));
+      throw error;
     }
   }
 };

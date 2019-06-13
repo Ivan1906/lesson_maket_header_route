@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './LatestList.module.scss';
+import s from './Profile.module.scss';
 import Header from './../../components/Header/Header';
 import Search from './../../components/Search/Search';
 import Product from '../../components/Product/Product';
 import Api from '../../api';
 
-function LatestListView({products, isLoading, handleClickProduct}) {
+function ProfileView({products, isLoading, handleClickProduct}) {
   products = Api.listProducts;
 
   return (
@@ -30,4 +30,4 @@ function LatestListView({products, isLoading, handleClickProduct}) {
   );
 };
 
-export default LatestListView;
+export default ProfileView;

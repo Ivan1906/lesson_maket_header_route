@@ -25,10 +25,14 @@ const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps)
     }
   },
   handleRestorePassword: ({history, resetPassword, initialValue, error}) => async() => {
-    await resetPassword(initialValue);
-    if (!error) {
-      history.push(routes.home);
-    }
+
+    try {
+      await resetPassword(initialValue);
+
+      if (!error) {
+        history.push(routes.login);
+      }
+    } catch(e) {}
   }
 }));
 

@@ -7,6 +7,7 @@ import {FormInput, Input, FormContainer} from './../../components/Form';
 import password from '../../img/password.svg';
 import Button from './../../components/Button/Button';
 import {isEmail, required} from '../../Tools/Errors/handleErrors';
+import Alert from '../../components/Alert/Alert';
 
 function RegisterView({
   initialValue,
@@ -16,7 +17,6 @@ function RegisterView({
   isLoading,
   errorMessage
 }) {
-  console.log(errorMessage)
   return (
     <React.Fragment>
       <Header theme="light"/>
@@ -27,7 +27,7 @@ function RegisterView({
           <div className={`${s.blockRegister} panel`}>
             <span className={`${s.register} center`}>Register</span>
             {errorMessage && (
-              <span className="error">{errorMessage.message}</span>
+              <Alert message={errorMessage.message}/>
             )}
 
             <FormInput
